@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B. Chaitanya - UI/UX Designer</title>
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #fff;
+            --accent-color: #8A2BE2;
+            --dark-bg: #121212;
+            --dark-card: #1E1E1E;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Header styles */
+        header {
+            padding: var(--spacing-lg) 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .header-profile-pic {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .header-profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+        
+        .main-nav a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+        
+        .main-nav a:hover {
+            color: var(--accent-color);
+        }
+        
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero section */
+        .hero {
+            padding: var(--spacing-lg) 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 70vh;
+        }
+
+        .hero-content {
+            max-width: 60%;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .hero-image {
+            width: 35%;
+            position: relative;
+        }
+
+        .profile-image {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Portfolio section */
+        .portfolio {
+            padding: var(--spacing-lg) 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::after {
+            content: '';
+            height: 2px;
+            flex-grow: 1;
+            background-color: var(--accent-color);
+            margin-left: var(--spacing-md);
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .project-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background-color: var(--dark-card);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: var(--spacing-md);
+        }
+
+        .project-title {
+            font-size: 20px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .project-description {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        /* About section */
+        .about {
+            padding: var(--spacing-lg) 0;
+            display: flex;
+            justify-content: space-between;
+            gap: var(--spacing-lg);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .skills {
+            margin-top: var(--spacing-lg);
+        }
+
+        .skill-item {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-right: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Contact section */
+        .contact {
+            padding: var(--spacing-lg) 0;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+        }
+
+        .contact-item {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--dark-card);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+        }
+
+        .contact-item i {
+            color: var(--accent-color);
+            margin-right: var(--spacing-sm);
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: var(--spacing-lg);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background-color: #7B1FA2;
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            border-top: 1px solid #333;
+            margin-top: var(--spacing-lg);
+        }
+
+        .social-links {
+            margin-top: var(--spacing-md);
+        }
+
+        .social-links a {
+            color: var(--secondary-color);
+            margin: 0 var(--spacing-sm);
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        /* Space theme elements */
+        .space-theme {
+            position: absolute;
+            opacity: 0.6;
+            z-index: -1;
+        }
+
+        .spaceship1 {
+            top: 10%;
+            right: 5%;
+            width: 100px;
+            animation: float 15s infinite alternate ease-in-out;
+        }
+
+        .spaceship2 {
+            bottom: 15%;
+            left: 3%;
+            width: 80px;
+            animation: float 10s infinite alternate-reverse ease-in-out;
+        }
+
+        .planet {
+            top: 60%;
+            right: 10%;
+            width: 120px;
+            animation: rotate 30s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(20px) rotate(5deg);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Carousel */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            margin-top: var(--spacing-lg);
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+
+        .carousel-dot.active {
+            background-color: var(--accent-color);
+        }
+
+        .carousel-prev, .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {  
+                max-width: 100%;
+                margin-bottom: var(--spacing-lg);
+            }
+
+            .hero-image {
+                width: 80%;
+            }
+
+            .about {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .spaceship1, .spaceship2, .planet {
+                display: none;
+            }
+            
+            .main-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                font-size: 24px;
+                cursor: pointer;
+            }
+            
+            .mobile-nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.95);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .mobile-nav.active {
+                transform: translateY(0);
+            }
+            
+            .mobile-nav a {
+                color: var(--secondary-color);
+                text-decoration: none;
+                font-size: 24px;
+                margin: var(--spacing-md) 0;
+            }
+            
+            .close-menu {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 24px;
+                cursor: pointer;
+            }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Mode toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" id="themeToggle">🌙</div>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="close-menu" id="closeMenu">✕</div>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <link rel="stylesheet" href="first.css">
+    <script src="first.js" defer></script>
+    <!-- Decorative space elements -->
+    <img src="WhatsApp Image 2025-05-26 at 17.39.54.jpeg" alt="spaceship" class="space-theme spaceship1">
+    <img src="WhatsApp Image 2025-05-26 at 17.39.54.jpeg" alt="spaceship" class="space-theme spaceship2">
+    <img src="WhatsApp Image 2025-05-26 at 17.39.54.jpeg" alt="planet" class="space-theme planet">
+
+    <div class="container">
+        <header>  
+            <div class="logo">
+                <div class="header-profile-pic">
+                    <img src="WhatsApp Image 2025-05-26 at 15.34.05.jpeg" alt="B. Chaitanya Profile">
+                </div>
+                B. Chaitanya
+            </div>
+            <nav class="main-nav">
+                <a href="#portfolio">Portfolio</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="mobile-menu-btn" id="menuBtn">☰</div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">UI/UX Designer</h1>
+                <p class="hero-subtitle">
+                    Hello! I am a UI/UX Designer, who loves to explore creative ways in search of delightful user experience. I can also create and also recreate a prototype for a product app, and a webpage for a company.
+                </p>
+                <a href="#portfolio" class="download-btn">View My Work</a>
+            </div>
+            <div class="hero-image">
+                <div class="profile-image">
+                    <img src="/api/placeholder/400/320" alt="B. Chaitanya">
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="portfolio">
+            <h2 class="section-title">Designing and Creativity</h2>
+            <p>"When UX doesn't consider all users, shouldn't it be known as 'SOME User Experience'.....or SX."</p>
+            
+            <div class="carousel">
+                <div class="carousel-container" id="projectCarousel">
+                    <div class="carousel-slide">
+                        <img src="WhatsApp Image 2025-05-26 at 15.34.06.jpeg" alt="Project 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="WhatsApp Image 2025-05-26 at 15.34.05 (1).jpeg" alt="Project 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="WhatsApp Image 2025-05-26 at 15.34.07.jpeg" alt="Project 3">
+                    </div>
+                    
+                </div>
+                <div class="carousel-nav" id="carouselNav"></div>
+                <button class="carousel-prev" id="prevBtn">❮</button>
+                <button class="carousel-next" id="nextBtn">❯</button>
+            </div>
+
+            <div class="projects"> 
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="WhatsApp Image 2025-05-26 at 15.34.06.jpeg" alt="Project 1">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Rools-Royce Website</h3>
+                        <p class="project-description">This website is to see different models of this car and to call with dealer to buy a car.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="WhatsApp Image 2025-05-26 at 15.34.05 (1).jpeg" alt="Project 2">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Mobile App Design</h3>
+                        <p class="project-description">Bhubaneswar metro application to buy tickets and see live location of train .</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="WhatsApp Image 2025-05-26 at 15.34.07.jpeg" alt="Project 3">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Product interface</h3>
+                        <p class="project-description">To see nike shoe product in a mobile application .</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="about-content">
+                <h2 class="section-title">About me</h2>
+                <p>
+                    As a UI/UX designer with a passion for creating intuitive and engaging digital experiences, I focus on user-centered design principles to craft interfaces that are both beautiful and functional.
+                </p>
+                <p>
+                    Beyond my design work, I'm also a dedicated musician specializing in percussion. I'm a 5-time state level champion and have participated in several international events, bringing that same creativity and rhythm to my design process.
+                </p>
+                <div class="skills">
+                    <h3>Skills</h3>
+                    <div class="skill-item">UI Design</div>
+                    <div class="skill-item">UX Design</div>
+                    <div class="skill-item">UX Research</div>
+                    <div class="skill-item">Wireframing</div>
+                    <div class="skill-item">Prototyping</div>
+                    <div class="skill-item">User Testing</div>
+                    <div class="skill-item">Figma</div>
+                    
+                    
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="WhatsApp Image 2025-05-26 at 17.44.35.jpeg" alt="Musician (percussionist)">
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2 class="section-title">Namaskaram</h2>
+            <p>Want to know about me or want to know about my projects...</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p>bchaitu04@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Location</h3>
+                    <p>Bhubaneswar, Odisha</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Phone</h3>
+                    <p>Contact me: 9438166776</p>
+                </div>
+            </div>
+            
+            <a href="#" class="download-btn">Download CV</a>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 B. Chaitanya. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        let darkMode = true;
+
+        themeToggle.addEventListener('click', () => {
+            darkMode = !darkMode;
+            document.body.style.backgroundColor = darkMode ? '#121212' : '#ffffff';
+            document.body.style.color = darkMode ? '#ffffff' : '#121212';
+            
+            // Update cards background
+            const cards = document.querySelectorAll('.project-card, .contact-item');
+            cards.forEach(card => {
+                card.style.backgroundColor = darkMode ? '#1E1E1E' : '#f5f5f5';
+            });
+            
+            // Update toggle icon
+            themeToggle.textContent = darkMode ? '🌙' : '☀️';
+        });
+
+        // Carousel functionality
+        const carousel = document.getElementById('projectCarousel');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const navContainer = document.getElementById('carouselNav');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        let currentSlide = 0;
+        
+        // Create navigation dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('carousel-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            navContainer.appendChild(dot);
+        });
+        
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update active dot
+            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide === 0) ? slides.length - 1 : currentSlide - 1;
+            goToSlide(currentSlide);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide === slides.length - 1) ? 0 : currentSlide + 1;
+            goToSlide(currentSlide);
+        });
+        
+        // Auto slide
+        setInterval(() => {
+            currentSlide = (currentSlide === slides.length - 1) ? 0 : currentSlide + 1;
+            goToSlide(currentSlide);
+        }, 5000);
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu functionality
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeMenu = document.getElementById('closeMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+        });
+        
+        // Close menu when clicking on a nav link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+            });
+        });
+
+        // Animation for space elements
+        function animateSpaceElements() {
+            const spaceships = document.querySelectorAll('.spaceship1, .spaceship2');
+            
+            spaceships.forEach(ship => {
+                const randomX = Math.random() * 20 - 10;
+                const randomRotate = Math.random() * 10 - 5;
+                
+                ship.style.transform = `translateY(${randomX}px) rotate(${randomRotate}deg)`;
+            });
+        }
+
+        // Call animation every few seconds
+        setInterval(animateSpaceElements, 3000);
+    </script>
+</body>
+</html> 
